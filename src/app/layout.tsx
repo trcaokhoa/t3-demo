@@ -4,6 +4,12 @@ import { Inter } from "next/font/google";
 import { cookies } from "next/headers";
 
 import { TRPCReactProvider } from "~/trpc/react";
+import Login from "./_components/login-button";
+import { NextUIProvider } from "@nextui-org/react";
+import { SessionProvider } from "next-auth/react";
+import  {Providers}  from "src/app/_utils/provider";
+
+
 
 const inter = Inter({
   subsets: ["latin"],
@@ -24,10 +30,19 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={`font-sans ${inter.variable}`}>
+        
         <TRPCReactProvider cookies={cookies().toString()}>
-          {children}
+        <Providers>          
+            
+            {children}
+
+          </Providers>
+
         </TRPCReactProvider>
       </body>
     </html>
   );
 }
+
+
+
